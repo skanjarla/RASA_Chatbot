@@ -96,20 +96,21 @@
   <span class="sr-only">Loading...</span></span>`;
                     document.getElementById("userText").value = "";
                     var urlencoded = new URLSearchParams();
-
                     var requestOptions = {
                         method: 'POST',
                         body: urlencoded,
                         redirect: 'follow'
                     };
                     fetch(`https://fathomless-tundra-93354.herokuapp.com/?id=1&message=${userText}`, requestOptions)
+
                         .then(function (response) {
                             document.getElementById("userText").value = "";
-                            return response.json();
+                            return response.text();
                         })
                         .then(function (output) {
-                            if (output[0]) {
-                                messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
+                            console.log(output);
+                            if (output) {
+                                messagesElement.innerHTML += `<p id="botReplay">${output}</p>`;
                             }
                         })
                         .then(function () {
