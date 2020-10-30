@@ -170,7 +170,7 @@
   align-self: flex-start;
   font-size: 1rem;
   border-radius: 1.125rem 1.3rem 1.3rem 0;
-  white-space: pre-line; 
+  white-space: pre-line;
 }
 .chat-bot #userReplay {
   background: rgb(236 136 41);
@@ -205,7 +205,10 @@
   height: 1.1em;
   width: 1.1em;
 }
-
+.bot-img {
+  max-width: 300px;
+  margin: 0 auto;
+}
 /* ==== Media Queries ====*/
 @media (max-width: 576px) {
   .bot {
