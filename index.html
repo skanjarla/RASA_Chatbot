@@ -87,7 +87,7 @@
                 body: JSON.stringify({ sender: 1, message: text }),
                 redirect: 'follow'
             };
-            fetch(`http://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
+            fetch(`https://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
 
                 .then(function (response) {
                     // document.getElementById("userText").value = "";
@@ -155,7 +155,7 @@
                         body: JSON.stringify({ sender: 1, message: userText }),
                         redirect: 'follow'
                     };
-                    fetch(`http://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
+                    fetch(`https://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
 
                         .then(function (response) {
                             document.getElementById("userText").value = "";
