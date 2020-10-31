@@ -93,30 +93,30 @@
                     return response.json();
                 })
                 .then(function (output) {
-                    console.log(output);
-                    if (output.text) {
-                        messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
+
+                    if (output[0].text) {
+                        messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
                     }
                     for (var k = 0; k < output.length; k++) {
-                        if (output.text) {
-                            messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
+                        if (output[k].text) {
+                            messagesElement.innerHTML += `<p id="botReplay">${output[k].text}</p>`;
                         }
                         if (output.image) {
-                            messagesElement.innerHTML += `<img class="bot-img" src=${output.image} />`;
+                            messagesElement.innerHTML += `<img class="bot-img" src=${output[k].image} />`;
                         }
                     }
                     // if (output) {
                     //     messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
                     // }
-                    if (output.buttons) {
-                        for (var i = 0; i < output.buttons.length; i++) {
-                            if (output.buttons[i].title) {
-                                console.log(output.buttons[i]);
-                                messagesElement.innerHTML += `<button type="button" onClick="getButtonResponse('${output.buttons[i + 1].payload}')">${output.buttons[i].title}</button>`;
+                    if (output[0].buttons) {
+                        for (var i = 0; i < output[0].buttons.length; i++) {
+                            if (output[0].buttons[i].title) {
+                                console.log(output[0].buttons[i]);
+                                messagesElement.innerHTML += `<button type="button" onClick="getButtonResponse('${output[0].buttons[i + 1].payload}')">${output[0].buttons[i].title}</button>`;
                             }
 
                         }
-                        console.log(output.buttons.length);
+
                     }
                 })
                 .then(function () {
@@ -165,15 +165,14 @@
                         .then(function (output) {
                             console.log(output);
                             if (output) {
-                                messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
+                                messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
                             }
-                            if (output.buttons) {
+                            if (output[0].buttons) {
                                 var b = '<div class="d-flex">';
                                 for (var i = 0; i < output.buttons.length; i++) {
 
-                                    if (output.buttons[i].title) {
-                                        console.log(output.buttons[i]);
-                                        b += `<button type="button" class="m-2 w-50 btn btn-primary" onClick="getButtonResponse('${output.buttons[i + 1].payload}')">${output.buttons[i].title}</button>`;
+                                    if (output[0].buttons[i].title) {
+                                        b += `<button type="button" class="m-2 w-50 btn btn-primary" onClick="getButtonResponse('${output[0].buttons[i + 1].payload}')">${output[0].buttons[i].title}</button>`;
                                     }
 
 
