@@ -169,7 +169,7 @@
                             }
                             if (output[0].buttons) {
                                 var b = '<div class="d-flex">';
-                                for (var i = 0; i < output.buttons.length; i++) {
+                                for (var i = 0; i < output[0].buttons.length; i++) {
 
                                     if (output[0].buttons[i].title) {
                                         b += `<button type="button" class="m-2 w-50 btn btn-primary" onClick="getButtonResponse('${output[0].buttons[i + 1].payload}')">${output[0].buttons[i].title}</button>`;
