@@ -93,10 +93,10 @@
                     return response.json();
                 })
                 .then(function (output) {
-
-                    if (output[0].text) {
-                        messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
-                    }
+                    console.log(output)
+//                     if (output[0].text) {
+//                         messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
+//                     }
                     for (var k = 0; k < output.length; k++) {
                         if (output[k].text) {
                             messagesElement.innerHTML += `<p id="botReplay">${output[k].text}</p>`;
