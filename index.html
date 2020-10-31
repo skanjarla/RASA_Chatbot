@@ -84,10 +84,9 @@
             console.log(text);
             var requestOptions = {
                 method: 'POST',
-                body: JSON.stringify({ sender: 1, message: text }),
                 redirect: 'follow'
             };
-            fetch(`https://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
+            fetch(`https://fathomless-tundra-93354.herokuapp.com/?message=${text}&id=1`, requestOptions)
 
                 .then(function (response) {
                     // document.getElementById("userText").value = "";
@@ -95,26 +94,29 @@
                 })
                 .then(function (output) {
                     console.log(output);
+                    if (output.text) {
+                        messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
+                    }
                     for (var k = 0; k < output.length; k++) {
-                        if (output[k].text) {
-                            messagesElement.innerHTML += `<p id="botReplay">${output[k].text}</p>`;
+                        if (output.text) {
+                            messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
                         }
-                        if (output[k].image) {
-                            messagesElement.innerHTML += `<img class="bot-img" src=${output[k].image} />`;
+                        if (output.image) {
+                            messagesElement.innerHTML += `<img class="bot-img" src=${output.image} />`;
                         }
                     }
                     // if (output) {
                     //     messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
                     // }
-                    if (output[0].buttons) {
-                        for (var i = 0; i < output[0].buttons.length; i++) {
-                            if (output[0].buttons[i].title) {
-                                console.log(output[0].buttons[i]);
-                                messagesElement.innerHTML += `<button type="button" onClick="getButtonResponse('${output[0].buttons[i + 1].payload}')">${output[0].buttons[i].title}</button>`;
+                    if (output.buttons) {
+                        for (var i = 0; i < output.buttons.length; i++) {
+                            if (output.buttons[i].title) {
+                                console.log(output.buttons[i]);
+                                messagesElement.innerHTML += `<button type="button" onClick="getButtonResponse('${output.buttons[i + 1].payload}')">${output.buttons[i].title}</button>`;
                             }
 
                         }
-                        console.log(output[0].buttons.length);
+                        console.log(output.buttons.length);
                     }
                 })
                 .then(function () {
@@ -152,10 +154,9 @@
                     document.getElementById("userText").value = "";
                     var requestOptions = {
                         method: 'POST',
-                        body: JSON.stringify({ sender: 1, message: userText }),
                         redirect: 'follow'
                     };
-                    fetch(`https://rasazyx.herokuapp.com/webhooks/rest/webhook`, requestOptions)
+                    fetch(`https://fathomless-tundra-93354.herokuapp.com/?message=${userText}&id=1`, requestOptions)
 
                         .then(function (response) {
                             document.getElementById("userText").value = "";
@@ -164,22 +165,21 @@
                         .then(function (output) {
                             console.log(output);
                             if (output) {
-                                messagesElement.innerHTML += `<p id="botReplay">${output[0].text}</p>`;
+                                messagesElement.innerHTML += `<p id="botReplay">${output.text}</p>`;
                             }
-                            if (output[0].buttons) {
+                            if (output.buttons) {
                                 var b = '<div class="d-flex">';
-                                for (var i = 0; i < output[0].buttons.length; i++) {
+                                for (var i = 0; i < output.buttons.length; i++) {
 
-                                    if (output[0].buttons[i].title) {
-                                        console.log(output[0].buttons[i]);
-                                        b += `<button type="button" class="m-2 w-50 btn btn-primary" onClick="getButtonResponse('${output[0].buttons[i + 1].payload}')">${output[0].buttons[i].title}</button>`;
+                                    if (output.buttons[i].title) {
+                                        console.log(output.buttons[i]);
+                                        b += `<button type="button" class="m-2 w-50 btn btn-primary" onClick="getButtonResponse('${output.buttons[i + 1].payload}')">${output.buttons[i].title}</button>`;
                                     }
 
 
                                 }
                                 messagesElement.innerHTML += b;
                                 b += "</div>";
-                                console.log(output[0].buttons.length);
                             }
                         })
                         .then(function () {
